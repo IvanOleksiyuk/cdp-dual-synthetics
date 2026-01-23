@@ -1,5 +1,5 @@
 # cdp-dual-synthetics
-Code placeholder for paper submitted to ICASSP 2026:
+Code placeholder for paper submitted to ICIP 2026:
 
 "TOWARD ENHANCED AUTHENTICATION OF COPY DETECTION PATTERNS VIA CROSS-CAMERA DUAL-SYNTHETIC REFERENCING"
 
