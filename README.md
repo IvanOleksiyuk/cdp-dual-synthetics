@@ -5,4 +5,4 @@ Code placeholder for paper submitted to ICIP 2026:
 
 by **Ivan Oleksiyuk**, Roman Chaban, Slava Voloshynovskiy
 
-**The code will be published upon acceptance of the paper.**
+**The code will be published upon publication of the paper.**
