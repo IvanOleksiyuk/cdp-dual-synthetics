@@ -1,0 +1,13 @@
+wandb:
+  _target_: "pytorch_lightning.loggers.WandbLogger"
+  project: "${project_name}"  # Use the project name from the config
+  name: "${network_name}"     # Use the network name from the config
+  save_dir: "${paths.full_path}/wandb_logs"  # Directory to save WnB logs
+  log_model: false             # Log model checkpoints to WnB
+  struct: false               # Allow dynamic keys in the logger configuration
+  id: null
+csv:
+  _target_: "pytorch_lightning.loggers.CSVLogger"
+  save_dir: "${paths.full_path}"  # Write metrics.csv straight into the model dir
+  name: ""
+  version: ""

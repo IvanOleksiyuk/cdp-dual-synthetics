@@ -1,0 +1,11 @@
+model_checkpoint:
+  _target_: "pytorch_lightning.callbacks.ModelCheckpoint"
+  dirpath: "${paths.full_path}checkpoints"
+  filename: "best_model"
+  save_top_k: 1
+  monitor: "val_loss"
+  mode: "min"
+  save_last: true  # Save the model checkpoint after the last epoch
+lr_monitor:
+  _target_: pytorch_lightning.callbacks.LearningRateMonitor
+  logging_interval: step

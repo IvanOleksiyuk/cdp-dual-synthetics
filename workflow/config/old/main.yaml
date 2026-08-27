@@ -1,0 +1,66 @@
+srcdir: null #Will be set from cmd line
+wrkspdir: null #Will be set from cmd line
+datadir: null #Will be set from cmd line
+wandb_key: null #Will be set from cmd line
+prepared_dataset_dir: null #Will be set from cmd line
+
+wandb_key: null
+
+debug: false
+weak_gpu: false
+do_cleanup: false
+reference_eval_mode: average_blocks
+
+#train_range: [1, 192]
+#valid_range: [193, 288]
+test_range: [193, 288]
+
+# References to use in the experiment
+do_digital_template_results: true
+
+models:
+  regression_l2_o55Epson:
+    yaml: regression_l2_o55Epson.yaml
+    templates: "singular"
+  regression_l2_o55iP12w:
+    yaml: regression_l2_o55iP12w.yaml
+    templates: "singular"
+  regression_l2_o55iP14w:
+    yaml: regression_l2_o55iP14w.yaml
+    templates: "singular"
+  regression_l2_3together:
+    yaml: regression_l2_3together.yaml
+    templates: "singular"
+
+  l2xADV_o55Epson:
+    yaml: l2xADV_o55Epson.yaml
+    templates: "singular"
+  l2xADV_o55iP12w:
+    yaml: l2xADV_o55iP12w.yaml
+    templates: "singular"
+  l2xADV_o55iP14w:
+    yaml: l2xADV_o55iP14w.yaml
+    templates: "singular"
+  l2xADV_3together:
+    yaml: l2xADV_3together.yaml
+    templates: "singular"
+  l2xADVv2_o55iP14w:
+    yaml: l2xADVv2_o55iP14w.yaml
+    templates: "singular"
+
+  l2cond_EpsoniP12iP14:
+    yaml: l2cond_EpsoniP12iP14_dev.yaml
+    templates: [o55Epson, o55iP12w, o55iP14w]
+
+  l2xADVcondv3_EpsoniP12iP14:
+    yaml: l2xADVcondv3_EpsoniP12iP14.yaml
+    templates: [o55Epson, o55iP12w, o55iP14w]
+
+baseline: none
+
+# what datapairs to use 
+captures_used:
+  - "o55Epson"
+  - "o55iP12w"
+  - "o55iP14w"
+  - "o55iP15w"

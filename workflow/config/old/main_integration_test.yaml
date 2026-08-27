@@ -1,0 +1,56 @@
+srcdir: null #Will be set from cmd line
+wrkspdir: null #Will be set from cmd line
+datadir: null #Will be set from cmd line
+wandb_key: null #Will be set from cmd line
+prepared_dataset_dir: null #Will be set from cmd line
+
+wandb_key: null 
+
+reference_eval_mode: "blocks_combine-1 blocks_combine-2"
+
+debug: true
+weak_gpu: true
+do_cleanup: false
+
+#train_range: [1, 192]
+#valid_range: [193, 288]
+test_range: [193, 288]
+
+eval_block_side: 64
+eval_block_stride: 64
+eval_image_side: 684
+
+# References to use in the experiment
+do_digital_template_results: true
+
+models:
+  # # a test network for generator only without encoder
+  # test_l2cond_EpsoniP12iP14:
+  #   yaml: test_l2cond_EpsoniP12iP14.yaml
+  #   templates: [o55Epson, o55iP12w, o55iP14w]
+
+  # # a test network for encoder only without generator
+  # test_encl2VsmlCond_EpsoniP12iP14:
+  #   yaml: test_genl2encl2VsmlCond_EpsoniP12iP14.yaml
+  #   templates: [o55Epson, o55iP12w, o55iP14w]
+
+  # A network combining both generator and encoder in a complicated way
+  test_l2condtransport_maxinfo_EpsoniP12iP14:
+    yaml: test_l2condtransport_maxinfo_EpsoniP12iP14.yaml
+    templates:
+      - [o55Epson, o55iP12w]
+      - [o55Epson, o55iP14w]
+      - [o55iP12w, o55Epson]
+      - [o55iP12w, o55iP14w]
+      - [o55iP14w, o55Epson]
+      - [o55iP14w, o55iP12w]
+  
+
+baseline: test_l2cond_EpsoniP12iP14
+
+# what datapairs to use 
+captures_used:
+  - "o55Epson"
+  - "o55iP12w"
+  - "o55iP14w"
+  - "o55iP15w"

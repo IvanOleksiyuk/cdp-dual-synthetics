@@ -1,0 +1,94 @@
+srcdir: null #Will be set from cmd line
+wrkspdir: null #Will be set from cmd line
+datadir: null #Will be set from cmd line
+wandb_key: null #Will be set from cmd line
+prepared_dataset_dir: null #Will be set from cmd line
+
+hydra_config_dir: src/configs/all_device_run
+model_tags_cmd: "++tags=test"
+
+reference_eval_mode: "blocks_combine-1 blocks_combine-2 blocks_combine-3 blocks_combine-4 blocks_combine-5 blocks_combine-6 blocks_combine-7 blocks_combine-8 blocks_combine-9 blocks_combine-10"
+
+debug: false
+weak_gpu: false
+do_cleanup: false
+
+train_range: [1, 192]
+valid_range: [193, 202]
+test_range: [203, 288]
+
+eval_block_side: 64
+eval_block_stride: 64
+eval_image_side: 684
+
+# References to use in the experiment
+do_digital_template_results: true
+do_cross_camera_auth_results: true
+do_legend_outside_plot: true
+do_combine_transport: true
+do_combine_other_camera: true
+
+models:
+
+  l2cond_EpsoniP15miP14wiPXSo:
+    yaml: l2cond_EpsoniP15miP14wiPXSo.yaml
+    templates: ["o55Epson", "o55iP12w", "o55iP15w", "o55iP14w", "o55iP15m", "o55iP14m", "o55iPXSo"]
+
+  l2condtransport_maxinfo_MR50_EpsoniP15miPXSo:
+    yaml: l2condtransport_maxinfo_MR50_EpsoniP15miPXSo.yaml
+    templates:
+      - [o55Epson, o55iP12w]
+      - [o55Epson, o55iP15w]
+      - [o55Epson, o55iP14w]
+      - [o55Epson, o55iP15m]
+      - [o55Epson, o55iP14m]
+      - [o55Epson, o55iPXSo]
+      - [o55iP12w, o55Epson]
+      - [o55iP12w, o55iP15w]
+      - [o55iP12w, o55iP14w]
+      - [o55iP12w, o55iP15m]
+      - [o55iP12w, o55iP14m]
+      - [o55iP12w, o55iPXSo]
+      - [o55iP15w, o55Epson]
+      - [o55iP15w, o55iP12w]
+      - [o55iP15w, o55iP14w]
+      - [o55iP15w, o55iP15m]
+      - [o55iP15w, o55iP14m]
+      - [o55iP15w, o55iPXSo]
+      - [o55iP14w, o55Epson]
+      - [o55iP14w, o55iP12w]
+      - [o55iP14w, o55iP15w]
+      - [o55iP14w, o55iP15m]
+      - [o55iP14w, o55iP14m]
+      - [o55iP14w, o55iPXSo]
+      - [o55iP15m, o55Epson]
+      - [o55iP15m, o55iP12w]
+      - [o55iP15m, o55iP15w]
+      - [o55iP15m, o55iP14w]
+      - [o55iP15m, o55iP14m]
+      - [o55iP15m, o55iPXSo]
+      - [o55iP14m, o55Epson]
+      - [o55iP14m, o55iP12w]
+      - [o55iP14m, o55iP15w]
+      - [o55iP14m, o55iP14w]
+      - [o55iP14m, o55iP15m]
+      - [o55iP14m, o55iPXSo]
+      - [o55iPXSo, o55Epson]
+      - [o55iPXSo, o55iP12w]
+      - [o55iPXSo, o55iP15w]
+      - [o55iPXSo, o55iP14w]
+      - [o55iPXSo, o55iP15m]
+      - [o55iPXSo, o55iP14m]
+  
+
+baseline: l2cond_EpsoniP15miP14wiPXSo
+
+# what datapairs to use 
+captures_used:
+  - "o55Epson"
+  - "o55iP12w"
+  - "o55iP15w"
+  - "o55iP14w"
+  - "o55iP15m"
+  - "o55iP14m"
+  - "o55iPXSo"

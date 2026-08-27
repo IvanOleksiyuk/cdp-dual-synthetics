@@ -1,0 +1,45 @@
+srcdir: null #Will be set from cmd line
+wrkspdir: null #Will be set from cmd line
+datadir: null #Will be set from cmd line
+wandb_key: null #Will be set from cmd line
+prepared_dataset_dir: null #Will be set from cmd line
+
+wandb_key: null 
+hydra_config_dir: src/configs/experiment_preliminary_for_paper_results
+
+debug: true
+weak_gpu: true
+do_cleanup: false
+
+#train_range: [1, 192]
+#valid_range: [193, 288]
+test_range: [193, 288]
+
+# References to use in the experiment
+do_digital_template_results: true
+
+models:
+  l2condtransport_4spavBNCoord_maxinfenc_MR50_EpsoniP15miP14wiPXSo:
+    yaml: l2condtransport_4spavBNCoord_maxinfenc_MR50_EpsoniP15miP14wiPXSo.yaml
+    templates:
+      - [o55Epson, o55iP15m]
+      - [o55Epson, o55iP14w]
+      - [o55Epson, o55iPXSo]
+      - [o55iP15m, o55Epson]
+      - [o55iP15m, o55iP14w]
+      - [o55iP15m, o55iPXSo]
+      - [o55iP14w, o55Epson]
+      - [o55iP14w, o55iP15m]
+      - [o55iP14w, o55iPXSo]
+      - [o55iPXSo, o55Epson]
+      - [o55iPXSo, o55iP15m]
+      - [o55iPXSo, o55iP14w]
+  
+baseline: EXP_l2cond_EpsoniP12iP14
+
+# what datapairs to use 
+captures_used:
+  - "o55Epson"
+  - "o55iP15m"
+  - "o55iP14w"
+  - "o55iPXSo"

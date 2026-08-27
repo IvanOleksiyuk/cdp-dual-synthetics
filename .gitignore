@@ -1,0 +1,10 @@
+.snakemake
+concept
+__pycache__
+**.txt
+**WIP**
+user**
+wandb**
+outputs/**
+workflow/profiles
+*.log

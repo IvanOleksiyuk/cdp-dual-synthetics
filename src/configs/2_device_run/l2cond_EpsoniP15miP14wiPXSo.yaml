@@ -1,0 +1,73 @@
+
+defaults:
+  - _self_
+  - callbacks: default_callbacks.yaml
+  - loggers: default_loggers.yaml
+
+paths:
+  model_name: "l2cond_EpsoniP15miP14wiPXSo"
+  workdir_path: null
+  dataset_path: null
+  full_path: "${paths.workdir_path}${paths.model_name}/"
+
+wandb_key: null  # Your W&B API key
+
+project_name: "cdp_dyal_synthetics"
+network_name: ${paths.model_name}
+
+seed: 42
+full_resume: false
+compile: false
+debug: false
+
+train_range: null #Will be set from cmd line
+valid_range: null #Will be set from cmd line
+test_range: null #Will be set from cmd line
+
+block_side: null #Will be set from cmd line
+block_stride: null #Will be set from cmd line
+
+data:
+  datamodule:
+    _target_: "src.data.data.CDPDatamodule"
+    dataset_path: ${paths.dataset_path}
+    batch_size: 16
+    num_workers: 8
+    n_captures: 1
+    pin_memory: True
+    allowed_suffixes: ["o55iP15m", "o55iPXSo"]  # Updated original suffixes "o_p2", "o_s1"
+  export_datamodule:
+    _target_: "src.data.data_new_datamodule.NewCDPDatamodule"
+    dataset_config:
+      dataset_base_path: ${paths.dataset_path}../wifs2024dataset/wifs2024dataset
+      template_data:  "tem"
+      original_data_x1: "o55Epson" # This does not matter for this model for eval, actually should be null but it crasheds then
+      uid_range: ${test_range}
+      block_settings:
+        block_h: ${block_side}
+        block_w: ${block_side}
+        stride_h: ${block_stride}
+        stride_w: ${block_stride}
+    batch_size: 16
+    num_workers: 8
+    pin_memory: True
+
+model:
+  _target_: "src.model.image_transit.ImageTRANSIT"
+  image_chan: 1
+  learning_rate: 0.001
+  dropout_p: 0.1
+  conditional: True
+
+trainer:
+  _target_: "pytorch_lightning.Trainer"
+  max_epochs: 40
+  accumulate_grad_batches: 1
+
+ckpt_path: null
+
+export:
+  checkpoint: "${paths.full_path}checkpoints/best_model.ckpt"
+  export_dir: "${paths.full_path}outputs/test_transformed"
+  reference_name: "reference"
+  classes: "allowed"
